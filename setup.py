@@ -25,7 +25,8 @@ setup(
     ],
     python_requires='>=3.8.*',
     install_requires=[
-        "numpy"
+        "numpy",
+        "statsmodels"
     ],
     extras_require={
         'tests': [""],
