@@ -12,10 +12,17 @@ class Arima(BaseModel):
         super().__init__()
         self._order = order
         self._model = None
+        self._ts_history = None
 
     def fit(self, ts_train: np.ndarray):
-        self._model = ARIMA(ts_train, order=self._order)
-        self._model.fit()
+        self._ts_history = [x for x in ts_train]
 
     def predict(self, ts_test: np.ndarray) -> np.ndarray:
-        pass
+        ts_pred = np.empty(len(ts_test))
+        for t in range(len(ts_test)):
+            self._model = ARIMA(self._ts_history, order=self._order)
+            self._model.fit()
+            output = self._model.forecast()
+            yhat = output[0]
+            ts_pred[t] = yhat
+            self._ts_history.append(ts_test[t])
