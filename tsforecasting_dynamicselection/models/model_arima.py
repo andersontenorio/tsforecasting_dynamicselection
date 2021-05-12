@@ -22,7 +22,5 @@ class Arima(BaseModel):
         for t in range(len(ts_test)):
             self._model = ARIMA(self._ts_history, order=self._order)
             self._model.fit()
-            output = self._model.forecast()
-            yhat = output[0]
-            ts_pred[t] = yhat
+            ts_pred[t] = self._model.forecast()[0]
             self._ts_history.append(ts_test[t])
