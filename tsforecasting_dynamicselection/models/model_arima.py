@@ -24,3 +24,4 @@ class Arima(BaseModel):
             self._model.fit()
             ts_pred[t] = self._model.forecast()[0]
             self._ts_history.append(ts_test[t])
+            print("predicted=%f, expected=%f" % (ts_pred[t], ts_test[t]))

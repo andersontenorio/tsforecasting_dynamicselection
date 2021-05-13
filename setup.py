@@ -29,7 +29,7 @@ setup(
         "statsmodels"
     ],
     extras_require={
-        'tests': [""],
-        'style': ["flake8", "mypy"]
+        "tests": ["pytest"],
+        "style": ["flake8", "mypy"]
     }
 )
