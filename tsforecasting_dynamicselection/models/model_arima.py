@@ -21,7 +21,7 @@ class Arima(BaseModel):
         ts_pred = np.empty(len(ts_test))
         for t in range(len(ts_test)):
             self._model = ARIMA(self._ts_history, order=self._order)
-            self._model.fit()
-            ts_pred[t] = self._model.forecast()[0]
+            model_fit = self._model.fit()
+            ts_pred[t] = model_fit.forecast()[0]
             self._ts_history.append(ts_test[t])
             print("predicted=%f, expected=%f" % (ts_pred[t], ts_test[t]))
